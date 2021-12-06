@@ -5,4 +5,18 @@
     <RootNamespace>Emerce_Service</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Emerce-DB\Emerce-DB.csproj" />
+    <ProjectReference Include="..\Emerce-Model\Emerce-Model.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Product\" />
+    <Folder Include="Category\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
 </Project>

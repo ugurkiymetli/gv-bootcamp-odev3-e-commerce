@@ -5,4 +5,9 @@
     <RootNamespace>Emerce_Model</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Product\" />
+    <Folder Include="Category\" />
+  </ItemGroup>
+
 </Project>

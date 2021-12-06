@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Emerce_DB.Entities;
+using Microsoft.EntityFrameworkCore;
 
 #nullable disable
 
-namespace Emerce_DB.Entities
+namespace Emerce_DB
 {
     public partial class EmerceContext : DbContext
     {
+        //Scaffold-DbContext "Server=(LocalDB)\MSSQLLocalDB;Database=Emerce;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -ContextDir Entities/DbContext -Context EmerceContext -Project Emerce-DB -StartupProject Emerce-DB -NoPluralize -Force
         public EmerceContext()
         {
         }
