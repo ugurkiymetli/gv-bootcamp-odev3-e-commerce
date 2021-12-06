@@ -13,13 +13,25 @@ namespace Emerce_Service.User
             mapper = _mapper;
         }
 
-        public bool Login( string username, string password )
-        {
-            bool result = false;
+        //public bool Login( string username, string password )
+        //{
+        //    bool result = false;
 
+        //    using ( var service = new EmerceContext() )
+        //    {
+        //        result = service.User.Any(u => !u.IsDeleted && u.IsActive && u.Username == username && u.Password == password);
+        //    }
+        //    return result;
+        //}
+        public General<Emerce_Model.User.UserLoginModel> Login( Emerce_Model.User.UserLoginModel user )
+        {
+            var result = new General<Emerce_Model.User.UserLoginModel>() { IsSuccess = false };
+            var model = mapper.Map<Emerce_DB.Entities.User>(user);
             using ( var service = new EmerceContext() )
             {
-                result = service.User.Any(u => !u.IsDeleted && u.IsActive && u.Username == username && u.Password == password);
+                result.Entity = mapper.Map<Emerce_Model.User.UserLoginModel>(model);
+                result.IsSuccess = service.User
+                    .Any(u => !u.IsDeleted && u.IsActive && u.Username == user.Username && u.Password == user.Password);
             }
             return result;
         }

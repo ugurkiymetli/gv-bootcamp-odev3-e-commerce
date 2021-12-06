@@ -5,6 +5,6 @@ namespace Emerce_Service.User
     public interface IUserService
     {
         public General<Emerce_Model.User.UserViewModel> Insert( Emerce_Model.User.UserViewModel newUser );
-        public bool Login( string username, string password );
+        public General<Emerce_Model.User.UserLoginModel> Login( Emerce_Model.User.UserLoginModel user );
     }
 }
