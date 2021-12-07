@@ -11,6 +11,87 @@ Simple E-Commerce WebApi project.
 
 <sub>keep in mind that _https://localhost:44359_ can change for you.<sub>
 
+## Categories
+
+## Create a new category
+
+### Request
+
+`POST /Category/`
+
+```curl
+curl --location --request POST 'https://localhost:44359/api/Category' \
+     --header 'Content-Type: application/json' \
+     --data-raw
+     '{
+          "name": "category1",
+          "description": "category1",
+          "iuser": 1
+     }'
+```
+
+<br>
+
+### Response
+
+```json
+{
+  "isSuccess": true,
+  "entity": {
+    "name": "category1",
+    "description": "category1",
+    "idatetime": "2021-12-07T22:51:00.7407267+03:00",
+    "iuser": 1
+  },
+  "list": null,
+  "totalCount": 0,
+  "validationErrorList": null,
+  "exceptionMessage": null
+}
+```
+
+<br>
+
+## Get list of categories
+
+### Request
+
+`GET /api/Category`
+
+```curl
+curl --location --request GET 'https://localhost:44359/api/Category'
+```
+
+<br>
+
+### Response
+
+```json
+{
+  "isSuccess": true,
+  "entity": null,
+  "list": [
+    {
+      "id": 1,
+      "name": "category1",
+      "description": "category1",
+      "idatetime": "2021-12-07T22:51:00.7407267+03:00",
+      "iuser": "user1"
+    },
+    {
+      "id": 2,
+      "name": "category2",
+      "description": "category2",
+      "idatetime": "2021-12-07T22:51:30.3207267+03:00",
+      "iuser": "user1"
+    }
+  ],
+  "totalCount": 2,
+  "validationErrorList": null,
+  "exceptionMessage": null
+}
+```
+
 ## Products
 
 ## Create a new Product
@@ -188,7 +269,7 @@ curl --location --request DELETE 'https://localhost:44359/api/Product/1'
 ```
  -->
 
-## User
+## Users
 
 ## Create a new User
 
@@ -413,3 +494,9 @@ curl --location --request DELETE 'https://localhost:44359/api/Thing/1'
 **Backend:** .Net Core
 
 **Database:** MS Sql
+
+## Acknowledgements
+
+- [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
+- [Awesome README](https://github.com/matiassingers/awesome-readme)
+- [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
