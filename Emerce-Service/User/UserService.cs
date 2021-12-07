@@ -15,19 +15,9 @@ namespace Emerce_Service.User
             mapper = _mapper;
         }
 
-        //public bool Login( string username, string password )
-        //{
-        //    bool result = false;
-
-        //    using ( var service = new EmerceContext() )
-        //    {
-        //        result = service.User.Any(u => !u.IsDeleted && u.IsActive && u.Username == username && u.Password == password);
-        //    }
-        //    return result;
-        //}
         public General<UserLoginModel> Login( UserLoginModel user )
         {
-            var result = new General<UserLoginModel>() { IsSuccess = false };
+            var result = new General<UserLoginModel>();
             var model = mapper.Map<Emerce_DB.Entities.User>(user);
             using ( var service = new EmerceContext() )
             {
@@ -40,7 +30,7 @@ namespace Emerce_Service.User
 
         public General<UserCreateModel> Insert( UserCreateModel newUser )
         {
-            var result = new General<UserCreateModel>() { IsSuccess = false };
+            var result = new General<UserCreateModel>();
             var model = mapper.Map<Emerce_DB.Entities.User>(newUser);
             using ( var service = new EmerceContext() )
             {
@@ -55,15 +45,19 @@ namespace Emerce_Service.User
 
         public General<UserViewModel> Get()
         {
-            var result = new General<UserViewModel>() { IsSuccess = false };
+            var result = new General<UserViewModel>();
             using ( var service = new EmerceContext() )
             {
-                var data = service.User.OrderBy(p => p.Id);
+                var data = service.User
+                    .Where(u => u.IsActive && !u.IsDeleted)
+                    .OrderBy(u => u.Id);
                 result.List = mapper.Map<List<UserViewModel>>(data);
                 result.IsSuccess = true;
+                result.TotalCount = data.Count();
             }
             return result;
         }
+        //void user delete
         /*public void Delete( int id )
         {
             using ( var service = new EmerceContext() )
@@ -76,9 +70,10 @@ namespace Emerce_Service.User
                 service.SaveChanges();
             }
         }*/
+        //user delete
         public General<UserViewModel> Delete( int id )
         {
-            var result = new General<UserViewModel>() { IsSuccess = false };
+            var result = new General<UserViewModel>();
             using ( var service = new EmerceContext() )
             {
                 var data = service.User.SingleOrDefault(u => u.Id == id);

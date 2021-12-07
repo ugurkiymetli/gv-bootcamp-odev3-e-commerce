@@ -4,6 +4,7 @@ namespace Emerce_Model.Product
 {
     public class ProductViewModel : IProductModel
     {
+        public int Id { get; set; }
         public string Category { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }

@@ -7,5 +7,6 @@ namespace Emerce_Service.Category
     {
         public General<CategoryCreateModel> Insert( CategoryCreateModel newCategory );
         public General<CategoryViewModel> Get();
+        public General<CategoryViewModel> Delete( int id );
     }
 }

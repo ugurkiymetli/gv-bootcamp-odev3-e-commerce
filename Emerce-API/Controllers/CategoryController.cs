@@ -26,5 +26,13 @@ namespace Emerce_API.Controllers
         {
             return categoryService.Get();
         }
+
+        //Delete User = throws ex if user is not found
+
+        [HttpDelete("{id}")]
+        public General<Emerce_Model.Category.CategoryViewModel> Delete( int id )
+        {
+            return categoryService.Delete(id);
+        }
     }
 }

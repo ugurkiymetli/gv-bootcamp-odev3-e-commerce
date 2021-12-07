@@ -27,5 +27,12 @@ namespace Emerce_API.Controllers
         {
             return productService.Get();
         }
+
+        //Delete Product
+        [HttpDelete("{id}")]
+        public General<Emerce_Model.Product.ProductViewModel> Delete( int id )
+        {
+            return productService.Delete(id);
+        }
     }
 }

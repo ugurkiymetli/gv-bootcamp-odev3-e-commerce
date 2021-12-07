@@ -19,9 +19,10 @@ namespace Emerce_Service.Product
             mapper = _mapper;
         }
 
+        //create product (uses data annotations to validate data)
         public General<ProductCreateModel> Insert( ProductCreateModel newProduct )
         {
-            var result = new General<ProductCreateModel>() { IsSuccess = false };
+            var result = new General<ProductCreateModel>();
             var model = mapper.Map<Emerce_DB.Entities.Product>(newProduct);
             using ( var service = new EmerceContext() )
             {
@@ -33,12 +34,14 @@ namespace Emerce_Service.Product
             }
             return result;
         }
+        //Get product list
         public General<ProductViewModel> Get()
         {
-            var result = new General<ProductViewModel>() { IsSuccess = false };
+            var result = new General<ProductViewModel>();
             using ( var service = new EmerceContext() )
             {
                 var data = service.Product.Include(p => p.Category)
+                    .Where(p => p.IsActive && !p.IsDeleted)
                     .Include(p => p.IuserNavigation)
                     .OrderBy(p => p.Id);
 
@@ -50,9 +53,59 @@ namespace Emerce_Service.Product
                     item.ToTurkishLira();
                 }
                 result.IsSuccess = true;
+                result.TotalCount = data.Count();
             }
             return result;
         }
+
+        //delete product
+        public General<ProductViewModel> Delete( int id )
+        {
+            var result = new General<ProductViewModel>();
+
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.Product.SingleOrDefault(p => p.Id == id);
+                if ( data is null )
+                {
+                    result.ExceptionMessage = $"Product with id: {id} is not found";
+                    return result;
+                }
+                service.Product.Remove(data);
+                service.SaveChanges();
+                result.Entity = mapper.Map<ProductViewModel>(data);
+
+                result.IsSuccess = true;
+            }
+
+            return result;
+        }
+        /*
+         
+        public General<CategoryViewModel> Delete( int id )
+        {
+            var result = new General<CategoryViewModel>() ;
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.Category.SingleOrDefault(c => c.Id == id);
+                if ( data is null )
+                {
+                    result.ExceptionMessage = $"Category with id: {id} is not found";
+                    return result;
+                }
+                bool categoryHasProducts = service.Product.Any(c => c.CategoryId == id);
+                if ( categoryHasProducts )
+                {
+                    result.ExceptionMessage = $"Category with id: {id} has products and cannot be deleted!";
+                    return result;
+                }
+                service.Category.Remove(data);
+                service.SaveChanges();
+                result.Entity = mapper.Map<CategoryViewModel>(data);
+                result.IsSuccess = true;
+            }
+            return result;
+        }*/
 
     }
 }

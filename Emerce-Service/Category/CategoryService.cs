@@ -18,7 +18,7 @@ namespace Emerce_Service.Category
         }
         public General<CategoryCreateModel> Insert( CategoryCreateModel newCategory )
         {
-            var result = new General<CategoryCreateModel>() { IsSuccess = false };
+            var result = new General<CategoryCreateModel>();
             var model = mapper.Map<Emerce_DB.Entities.Category>(newCategory);
             using ( var service = new EmerceContext() )
             {
@@ -32,13 +32,39 @@ namespace Emerce_Service.Category
         }
         public General<CategoryViewModel> Get()
         {
-            var result = new General<CategoryViewModel>() { IsSuccess = false };
+            var result = new General<CategoryViewModel>();
             using ( var service = new EmerceContext() )
             {
                 var data = service.Category
-                    .Include(p => p.IuserNavigation)
-                    .OrderBy(p => p.Id);
+                    .Where(c => c.IsActive && !c.IsDeleted)
+                    .Include(c => c.IuserNavigation)
+                    .OrderBy(c => c.Id);
                 result.List = mapper.Map<List<CategoryViewModel>>(data);
+                result.IsSuccess = true;
+                result.TotalCount = data.Count();
+            }
+            return result;
+        }
+        public General<CategoryViewModel> Delete( int id )
+        {
+            var result = new General<CategoryViewModel>();
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.Category.SingleOrDefault(c => c.Id == id);
+                if ( data is null )
+                {
+                    result.ExceptionMessage = $"Category with id: {id} is not found";
+                    return result;
+                }
+                bool categoryHasProducts = service.Product.Any(c => c.CategoryId == id);
+                if ( categoryHasProducts )
+                {
+                    result.ExceptionMessage = $"Category with id: {id} has products and cannot be deleted!";
+                    return result;
+                }
+                service.Category.Remove(data);
+                service.SaveChanges();
+                result.Entity = mapper.Map<CategoryViewModel>(data);
                 result.IsSuccess = true;
             }
             return result;

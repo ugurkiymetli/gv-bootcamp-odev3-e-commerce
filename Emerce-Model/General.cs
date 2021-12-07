@@ -4,7 +4,7 @@ namespace Emerce_Model
 {
     public class General<T>
     {
-        public bool IsSuccess { get; set; }
+        public bool IsSuccess { get; set; } = false;
         public T Entity { get; set; }
         public List<T> List { get; set; }
         public int TotalCount { get; set; }
