@@ -41,9 +41,9 @@ namespace Emerce_DB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Idate)
+                entity.Property(e => e.Idatetimetime)
                     .HasColumnType("datetime")
-                    .HasColumnName("IDate");
+                    .HasColumnName("IDatetime");
 
                 entity.Property(e => e.Iuser).HasColumnName("IUser");
 
@@ -52,9 +52,9 @@ namespace Emerce_DB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Udate)
+                entity.Property(e => e.Udatetimetime)
                     .HasColumnType("datetime")
-                    .HasColumnName("UDate");
+                    .HasColumnName("UDatetime");
 
                 entity.Property(e => e.Uuser).HasColumnName("UUser");
 
@@ -77,9 +77,9 @@ namespace Emerce_DB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Idate)
+                entity.Property(e => e.Idatetimetime)
                     .HasColumnType("datetime")
-                    .HasColumnName("IDate")
+                    .HasColumnName("IDatetime")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Iuser).HasColumnName("IUser");
@@ -91,9 +91,9 @@ namespace Emerce_DB
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.Udate)
+                entity.Property(e => e.Udatetimetime)
                     .HasColumnType("datetime")
-                    .HasColumnName("UDate");
+                    .HasColumnName("UDatetime");
 
                 entity.Property(e => e.Uuser).HasColumnName("UUSer");
 
@@ -117,9 +117,9 @@ namespace Emerce_DB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Idatetime)
+                entity.Property(e => e.Idatetimetime)
                     .HasColumnType("datetime")
-                    .HasColumnName("IDatetime")
+                    .HasColumnName("IDatetimetime")
                     .HasDefaultValueSql("(getdate())");
 
                 entity.Property(e => e.Iuser).HasColumnName("IUser");
@@ -134,9 +134,9 @@ namespace Emerce_DB
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Udatetime)
+                entity.Property(e => e.Udatetimetime)
                     .HasColumnType("datetime")
-                    .HasColumnName("UDatetime");
+                    .HasColumnName("UDatetimetime");
 
                 entity.Property(e => e.Username)
                     .IsRequired()

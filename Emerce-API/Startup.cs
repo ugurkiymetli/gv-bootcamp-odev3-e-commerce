@@ -1,5 +1,7 @@
 using AutoMapper;
 using Emerce_API.Infrastructure;
+using Emerce_Service.Category;
+using Emerce_Service.Product;
 using Emerce_Service.User;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +28,8 @@ namespace Emerce_API
             IMapper mapper = _mappingProfile.CreateMapper();
             services.AddSingleton(mapper);
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ICategoryService, CategoryService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

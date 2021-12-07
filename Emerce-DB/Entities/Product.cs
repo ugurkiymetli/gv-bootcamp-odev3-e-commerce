@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 #nullable disable
 
@@ -16,8 +15,8 @@ namespace Emerce_DB.Entities
         public int Stock { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public DateTime Idate { get; set; }
-        public DateTime? Udate { get; set; }
+        public DateTime Idatetimetime { get; set; }
+        public DateTime? Udatetimetime { get; set; }
         public int Iuser { get; set; }
         public int? Uuser { get; set; }
 

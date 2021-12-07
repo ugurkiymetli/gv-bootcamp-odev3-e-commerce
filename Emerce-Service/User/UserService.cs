@@ -36,16 +36,16 @@ namespace Emerce_Service.User
             return result;
         }
 
-        public General<Emerce_Model.User.UserViewModel> Insert( Emerce_Model.User.UserViewModel newUser )
+        public General<Emerce_Model.User.UserCreateModel> Insert( Emerce_Model.User.UserCreateModel newUser )
         {
-            var result = new General<Emerce_Model.User.UserViewModel>() { IsSuccess = false };
+            var result = new General<Emerce_Model.User.UserCreateModel>() { IsSuccess = false };
             var model = mapper.Map<Emerce_DB.Entities.User>(newUser);
             using ( var service = new EmerceContext() )
             {
-                model.Idatetime = DateTime.Now;
+                model.Idatetimetime = DateTime.Now;
                 service.User.Add(model);
                 service.SaveChanges();
-                result.Entity = mapper.Map<Emerce_Model.User.UserViewModel>(model);
+                result.Entity = mapper.Map<Emerce_Model.User.UserCreateModel>(model);
                 result.IsSuccess = true;
             }
             return result;
