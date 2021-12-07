@@ -1,13 +1,12 @@
 ﻿using System;
 
-namespace Emerce_Model.Category
+namespace Emerce_Model.Product
 {
-    public class CategoryViewModel : ICategoryModel
+    public interface IProductModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
+        public string DisplayName { get; set; }
         public string Description { get; set; }
         public DateTime Idatetime { get; set; }
-        public string Iuser { get; set; }
     }
 }

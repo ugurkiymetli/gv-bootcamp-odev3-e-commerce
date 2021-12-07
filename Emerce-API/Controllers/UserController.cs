@@ -21,16 +21,19 @@ namespace Emerce_API.Controllers
         {
             return userService.Insert(newUser);
         }
+
+        //Login User = takes General object and returns general object with isSuccess : true/false
         [HttpPost]
         [Route("login")]
-        //public bool Login( [FromBody] string username, string password )
-        //{
-
-        //    return userService.Login(username, password);
-        //}
         public General<Emerce_Model.User.UserLoginModel> Login( [FromBody] Emerce_Model.User.UserLoginModel user )
         {
             return userService.Login(user);
         }
+        [HttpGet]
+        public General<Emerce_Model.User.UserViewModel> Get()
+        {
+            return userService.Get();
+        }
+
     }
 }

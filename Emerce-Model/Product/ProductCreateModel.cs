@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Emerce_Model.Product
 {
-    public class ProductCreateModel
+    public class ProductCreateModel : IProductModel
     {
         //public int Id { get; set; }
 

@@ -2,7 +2,7 @@
 
 namespace Emerce_Model.Product
 {
-    public class ProductViewModel
+    public class ProductViewModel : IProductModel
     {
         public string Category { get; set; }
         public string Name { get; set; }

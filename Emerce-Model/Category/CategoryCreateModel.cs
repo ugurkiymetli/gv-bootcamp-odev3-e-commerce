@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Emerce_Model.Category
 {
-    public class CategoryCreateModel
+    public class CategoryCreateModel : ICategoryModel
     {
         [Required(ErrorMessage = "{0} is required.")]
         public string Name { get; set; }

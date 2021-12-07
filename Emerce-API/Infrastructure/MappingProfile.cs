@@ -6,12 +6,16 @@ namespace Emerce_API.Infrastructure
         public MappingProfile()
         {
             /* USER MAPS */
-            //create user
+            //user create 
             CreateMap<Emerce_DB.Entities.User, Emerce_Model.User.UserCreateModel>();
             CreateMap<Emerce_Model.User.UserCreateModel, Emerce_DB.Entities.User>();
-            //login user
+            //user login
             CreateMap<Emerce_DB.Entities.User, Emerce_Model.User.UserLoginModel>();
             CreateMap<Emerce_Model.User.UserLoginModel, Emerce_DB.Entities.User>();
+            //user view
+            CreateMap<Emerce_Model.User.UserViewModel, Emerce_DB.Entities.User>();
+            CreateMap<Emerce_DB.Entities.User, Emerce_Model.User.UserViewModel>();
+
 
             /* PRODUCT MAPS */
             //product create

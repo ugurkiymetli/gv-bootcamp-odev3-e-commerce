@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Emerce_DB;
+using Emerce_Extension;
 using Emerce_Model;
 using Emerce_Model.Product;
 using Microsoft.EntityFrameworkCore;
@@ -40,20 +41,14 @@ namespace Emerce_Service.Product
                 var data = service.Product.Include(p => p.Category)
                     .Include(p => p.IuserNavigation)
                     .OrderBy(p => p.Id);
+
                 result.List = mapper.Map<List<ProductViewModel>>(data);
 
-                //Adding Extension here - WIP
-                //foreach ( var item in data )
-                //{
-                //    item.Price.ToString();
-                //    item.Price.ToTurkishLira();
-                //}
-                //result.List = mapper.Map<List<ProductViewModel>>(data);
-                //foreach ( var item in result.List )
-                //{
-                //    item.Price.ToTurkishLira();
-                //}
-
+                //Using extension ToTurkishLira here. Takes ProductViewModel item as input and converts price to Turkish Lira type.
+                foreach ( var item in result.List )
+                {
+                    item.ToTurkishLira();
+                }
                 result.IsSuccess = true;
             }
             return result;

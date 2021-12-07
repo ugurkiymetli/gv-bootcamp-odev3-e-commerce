@@ -2,12 +2,10 @@
 
 namespace Emerce_Model.Category
 {
-    public class CategoryViewModel : ICategoryModel
+    public interface ICategoryModel
     {
-        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime Idatetime { get; set; }
-        public string Iuser { get; set; }
     }
 }
