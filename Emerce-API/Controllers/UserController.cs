@@ -29,10 +29,23 @@ namespace Emerce_API.Controllers
         {
             return userService.Login(user);
         }
+        //Get All User = returns users in General object List
         [HttpGet]
         public General<Emerce_Model.User.UserViewModel> Get()
         {
             return userService.Get();
+        }
+
+        //Delete User = throws ex if user is not found
+
+        [HttpDelete("{id}")]
+        /*public void Delete( int id )
+        {
+            userService.Delete(id);
+        }*/
+        public General<Emerce_Model.User.UserViewModel> Delete( int id )
+        {
+            return userService.Delete(id);
         }
 
     }

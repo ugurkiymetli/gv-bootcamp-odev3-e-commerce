@@ -64,5 +64,36 @@ namespace Emerce_Service.User
             }
             return result;
         }
+        /*public void Delete( int id )
+        {
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.User.SingleOrDefault(u => u.Id == id);
+                if ( data is null )
+                    //throw new InvalidOperationException("This user is not found!!");
+                    return;
+                service.User.Remove(data);
+                service.SaveChanges();
+            }
+        }*/
+        public General<UserViewModel> Delete( int id )
+        {
+            var result = new General<UserViewModel>() { IsSuccess = false };
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.User.SingleOrDefault(u => u.Id == id);
+                if ( data is null )
+                {
+                    result.ExceptionMessage = $"User with id: {id} is not found";
+                    return result;
+                }
+
+                service.User.Remove(data);
+                service.SaveChanges();
+                result.Entity = mapper.Map<UserViewModel>(data);
+                result.IsSuccess = true;
+            }
+            return result;
+        }
     }
 }
