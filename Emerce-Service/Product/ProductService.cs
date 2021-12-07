@@ -80,32 +80,5 @@ namespace Emerce_Service.Product
 
             return result;
         }
-        /*
-         
-        public General<CategoryViewModel> Delete( int id )
-        {
-            var result = new General<CategoryViewModel>() ;
-            using ( var service = new EmerceContext() )
-            {
-                var data = service.Category.SingleOrDefault(c => c.Id == id);
-                if ( data is null )
-                {
-                    result.ExceptionMessage = $"Category with id: {id} is not found";
-                    return result;
-                }
-                bool categoryHasProducts = service.Product.Any(c => c.CategoryId == id);
-                if ( categoryHasProducts )
-                {
-                    result.ExceptionMessage = $"Category with id: {id} has products and cannot be deleted!";
-                    return result;
-                }
-                service.Category.Remove(data);
-                service.SaveChanges();
-                result.Entity = mapper.Map<CategoryViewModel>(data);
-                result.IsSuccess = true;
-            }
-            return result;
-        }*/
-
     }
 }
