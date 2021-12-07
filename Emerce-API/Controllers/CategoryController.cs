@@ -20,5 +20,11 @@ namespace Emerce_API.Controllers
         {
             return categoryService.Insert(newCategory);
         }
+        //Get Category
+        [HttpGet]
+        public General<Emerce_Model.Category.CategoryViewModel> Get()
+        {
+            return categoryService.Get();
+        }
     }
 }

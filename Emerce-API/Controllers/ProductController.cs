@@ -20,5 +20,12 @@ namespace Emerce_API.Controllers
         {
             return productService.Insert(newProduct);
         }
+
+        //Get Product
+        [HttpGet]
+        public General<Emerce_Model.Product.ProductViewModel> Get()
+        {
+            return productService.Get();
+        }
     }
 }

@@ -2,17 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>Emerce_Service</RootNamespace>
+    <RootNamespace>Emerce_Extension</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Emerce-DB\Emerce-DB.csproj" />
-    <ProjectReference Include="..\Emerce-Extension\Emerce-Extension.csproj" />
     <ProjectReference Include="..\Emerce-Model\Emerce-Model.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
 </Project>

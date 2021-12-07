@@ -42,7 +42,7 @@ namespace Emerce_Service.User
             var model = mapper.Map<Emerce_DB.Entities.User>(newUser);
             using ( var service = new EmerceContext() )
             {
-                model.Idatetimetime = DateTime.Now;
+                model.Idatetime = DateTime.Now;
                 service.User.Add(model);
                 service.SaveChanges();
                 result.Entity = mapper.Map<Emerce_Model.User.UserCreateModel>(model);

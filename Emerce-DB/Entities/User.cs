@@ -20,8 +20,8 @@ namespace Emerce_DB.Entities
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
-        public DateTime Idatetimetime { get; set; }
-        public DateTime? Udatetimetime { get; set; }
+        public DateTime Idatetime { get; set; }
+        public DateTime? Udatetime { get; set; }
         public int Iuser { get; set; }
         public int? Uuser { get; set; }
 

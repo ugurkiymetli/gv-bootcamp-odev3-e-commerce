@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerce-API", "Emerce-API\Emerce-API.csproj", "{8DDE9542-54D8-481B-B02B-2205E19E5690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerce-API", "Emerce-API\Emerce-API.csproj", "{8DDE9542-54D8-481B-B02B-2205E19E5690}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerce-DB", "Emerce-DB\Emerce-DB.csproj", "{B64A06A0-86B4-4BB4-A4D5-0D113FDC2DC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerce-DB", "Emerce-DB\Emerce-DB.csproj", "{B64A06A0-86B4-4BB4-A4D5-0D113FDC2DC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerce-Model", "Emerce-Model\Emerce-Model.csproj", "{1D507721-B2EE-4E13-9051-22B35E196529}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerce-Model", "Emerce-Model\Emerce-Model.csproj", "{1D507721-B2EE-4E13-9051-22B35E196529}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerce-Service", "Emerce-Service\Emerce-Service.csproj", "{1D50CADD-BA16-468C-9B67-46C13D16BE88}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Emerce-Service", "Emerce-Service\Emerce-Service.csproj", "{1D50CADD-BA16-468C-9B67-46C13D16BE88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Emerce-Extension", "Emerce-Extension\Emerce-Extension.csproj", "{3121038A-A071-449A-B28D-77001BE5E34A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1D50CADD-BA16-468C-9B67-46C13D16BE88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D50CADD-BA16-468C-9B67-46C13D16BE88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1D50CADD-BA16-468C-9B67-46C13D16BE88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3121038A-A071-449A-B28D-77001BE5E34A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3121038A-A071-449A-B28D-77001BE5E34A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3121038A-A071-449A-B28D-77001BE5E34A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3121038A-A071-449A-B28D-77001BE5E34A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
