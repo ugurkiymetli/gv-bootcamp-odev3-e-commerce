@@ -7,5 +7,6 @@ namespace Emerce_Service.Product
         public General<Emerce_Model.Product.ProductCreateModel> Insert( Emerce_Model.Product.ProductCreateModel newProduct );
         public General<Emerce_Model.Product.ProductViewModel> Get();
         public General<Emerce_Model.Product.ProductViewModel> Delete( int id );
+        public General<Emerce_Model.Product.ProductUpdateModel> Update( Emerce_Model.Product.ProductUpdateModel updatedProduct, int id );
     }
 }

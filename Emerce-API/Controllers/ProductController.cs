@@ -27,7 +27,12 @@ namespace Emerce_API.Controllers
         {
             return productService.Get();
         }
-
+        //Update Product
+        [HttpPut("{id}")]
+        public General<Emerce_Model.Product.ProductUpdateModel> Update( [FromBody] Emerce_Model.Product.ProductUpdateModel updatedProduct, int id )
+        {
+            return productService.Update(updatedProduct, id);
+        }
         //Delete Product
         [HttpDelete("{id}")]
         public General<Emerce_Model.Product.ProductViewModel> Delete( int id )

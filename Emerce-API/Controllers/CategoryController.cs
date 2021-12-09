@@ -27,6 +27,14 @@ namespace Emerce_API.Controllers
             return categoryService.Get();
         }
 
+        //Update Category
+
+        [HttpPut("{id}")]
+        public General<Emerce_Model.Category.CategoryUpdateModel> Update( [FromBody] Emerce_Model.Category.CategoryUpdateModel updatedCategory, int id )
+        {
+            return categoryService.Update(updatedCategory, id);
+        }
+
         //Delete User = throws ex if user is not found
 
         [HttpDelete("{id}")]

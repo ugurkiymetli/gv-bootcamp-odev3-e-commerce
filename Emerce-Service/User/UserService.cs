@@ -57,6 +57,30 @@ namespace Emerce_Service.User
             }
             return result;
         }
+
+        public General<UserUpdateModel> Update( UserUpdateModel updatedUser, int id )
+        {
+            var result = new General<UserUpdateModel>();
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.User.SingleOrDefault(u => u.Id == id);
+                if ( data is null )
+                {
+                    result.ExceptionMessage = $"User with id: {id} is not found";
+                    return result;
+                }
+                data.Username = String.IsNullOrEmpty(updatedUser.Username.Trim()) ? data.Username : updatedUser.Username;
+                data.Email = String.IsNullOrEmpty(updatedUser.Email.Trim()) ? data.Email : updatedUser.Email;
+                data.Password = String.IsNullOrEmpty(updatedUser.Password.Trim()) ? data.Password : updatedUser.Password;
+                updatedUser.Udatetime = DateTime.Now;
+
+                service.SaveChanges();
+                result.Entity = mapper.Map<UserUpdateModel>(updatedUser);
+                result.IsSuccess = true;
+            }
+            return result;
+        }
+
         //void user delete
         /*public void Delete( int id )
         {

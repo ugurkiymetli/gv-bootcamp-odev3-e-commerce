@@ -2,6 +2,7 @@
 using Emerce_Service.User;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace Emerce_API.Controllers
 {
     [Route("api/[controller]")]
@@ -35,9 +36,16 @@ namespace Emerce_API.Controllers
         {
             return userService.Get();
         }
+        //Update User
+        [HttpPut("{id}")]
+        public General<Emerce_Model.User.UserUpdateModel> Update( [FromBody] Emerce_Model.User.UserUpdateModel updatedUser, int id )
+        {
+            return userService.Update(updatedUser, id);
+        }
+
+
 
         //Delete User = throws ex if user is not found
-
         [HttpDelete("{id}")]
         /*public void Delete( int id )
         {

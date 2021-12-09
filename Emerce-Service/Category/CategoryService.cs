@@ -2,6 +2,7 @@
 using Emerce_DB;
 using Emerce_Model;
 using Emerce_Model.Category;
+using Emerce_Service.Validator;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,13 +10,15 @@ using System.Linq;
 
 namespace Emerce_Service.Category
 {
-    public class CategoryService : ICategoryService
+    public class CategoryService : IsValidBase, ICategoryService
     {
         private readonly IMapper mapper;
         public CategoryService( IMapper _mapper )
         {
             mapper = _mapper;
         }
+
+        //Insert Category
         public General<CategoryCreateModel> Insert( CategoryCreateModel newCategory )
         {
             var result = new General<CategoryCreateModel>();
@@ -30,6 +33,8 @@ namespace Emerce_Service.Category
             }
             return result;
         }
+
+        //Get Category List
         public General<CategoryViewModel> Get()
         {
             var result = new General<CategoryViewModel>();
@@ -45,6 +50,38 @@ namespace Emerce_Service.Category
             }
             return result;
         }
+
+        //Update Category
+        public General<CategoryUpdateModel> Update( CategoryUpdateModel updatedCategory, int id )
+        {
+            var result = new General<CategoryUpdateModel>();
+            using ( var service = new EmerceContext() )
+            {
+                var data = service.Category.SingleOrDefault(c => c.Id == id);
+                if ( data is null )
+                {
+                    result.ExceptionMessage = $"Category with id:{id} is not found";
+                    return result;
+                }
+                if ( !IsValidUser(service, ( int )updatedCategory.Uuser) )
+                {
+                    result.ExceptionMessage = $"User with id:{updatedCategory.Uuser} is not found";
+                    return result;
+                }
+
+                data.Udatetime = DateTime.Now;
+                data.Description = String.IsNullOrEmpty(updatedCategory.Description.Trim()) ? data.Description : updatedCategory.Description;
+                data.Name = String.IsNullOrEmpty(updatedCategory.Name.Trim()) ? data.Name : updatedCategory.Name;
+
+                service.SaveChanges();
+                result.Entity = mapper.Map<CategoryUpdateModel>(updatedCategory);
+                result.IsSuccess = true;
+            }
+            return result;
+
+        }
+
+        //Delete Category
         public General<CategoryViewModel> Delete( int id )
         {
             var result = new General<CategoryViewModel>();
