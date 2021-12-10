@@ -21,6 +21,8 @@ namespace Emerce_API
 
         public IConfiguration Configuration { get; }
 
+        readonly string AllowAllHeaders = "_allowAllHeaders";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices( IServiceCollection services )
         {
@@ -30,6 +32,18 @@ namespace Emerce_API
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<ICategoryService, CategoryService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: AllowAllHeaders,
+                                  builder =>
+                                  {
+                                      builder/*.WithOrigins("http://localhost:3001/")*/
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod()
+                                      .AllowAnyOrigin();
+                                  });
+            });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -50,6 +64,9 @@ namespace Emerce_API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+
+            app.UseCors(AllowAllHeaders);
 
             app.UseAuthorization();
 

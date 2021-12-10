@@ -14,7 +14,8 @@ namespace Emerce_API.Infrastructure
             CreateMap<Emerce_Model.User.UserLoginModel, Emerce_DB.Entities.User>();
             //user view
             CreateMap<Emerce_Model.User.UserViewModel, Emerce_DB.Entities.User>();
-            CreateMap<Emerce_DB.Entities.User, Emerce_Model.User.UserViewModel>();
+            CreateMap<Emerce_DB.Entities.User, Emerce_Model.User.UserViewModel>()
+                .ForMember(dest => dest.Iuser, opt => opt.MapFrom(src => src.Email));
 
 
             /* PRODUCT MAPS */
@@ -33,7 +34,8 @@ namespace Emerce_API.Infrastructure
             CreateMap<Emerce_DB.Entities.Category, Emerce_Model.Category.CategoryCreateModel>();
             //category view
             CreateMap<Emerce_Model.Category.CategoryViewModel, Emerce_DB.Entities.Category>();
-            CreateMap<Emerce_DB.Entities.Category, Emerce_Model.Category.CategoryViewModel>();
+            CreateMap<Emerce_DB.Entities.Category, Emerce_Model.Category.CategoryViewModel>()
+                .ForMember(dest => dest.Iuser, opt => opt.MapFrom(src => src.IuserNavigation.Email));
         }
         //showing detail on list is not required so I will use this map for get detail 
         //CreateMap<Emerce_DB.Entities.Category, Emerce_Model.Category.CategoryViewModel>().ForMember(dest => dest.Iuser, opt => opt.MapFrom(src => src.IuserNavigation.Email));            

@@ -22,6 +22,7 @@ namespace Emerce_API.Controllers
         }
 
         //Get Product
+        //[EnableCors("AllowAllHeaders")]
         [HttpGet]
         public General<Emerce_Model.Product.ProductViewModel> Get()
         {

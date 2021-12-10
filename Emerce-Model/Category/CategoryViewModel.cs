@@ -9,6 +9,6 @@ namespace Emerce_Model.Category
         public string Description { get; set; }
         public DateTime Idatetime { get; set; }
         public DateTime? Udatetime { get; set; }
-        //public string Iuser { get; set; }
+        public string Iuser { get; set; }
     }
 }
